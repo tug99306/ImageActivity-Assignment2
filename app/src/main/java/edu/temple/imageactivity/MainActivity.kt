@@ -2,10 +2,6 @@ package edu.temple.imageactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 
@@ -14,12 +10,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var imageAdapter: ImageAdapter
-
+        val imageAdapter: ImageAdapter
         val recycler = findViewById<RecyclerView>(R.id.recycler)
 
 
-        var imageArray = arrayOf(
+        val imageArray = arrayOf(
             ImageObject("Eagle", R.drawable.eagle)
             , ImageObject("Hawk", R.drawable.hawk)
             , ImageObject("Lovebird", R.drawable.lovebird)

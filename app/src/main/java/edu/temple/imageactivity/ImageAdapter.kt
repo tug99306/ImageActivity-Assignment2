@@ -6,19 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class ImageAdapter (val _content: Context, var _imageObjects: Array<ImageObject>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>()
+class ImageAdapter (var _context: Context, var _imageObjects: Array<ImageObject>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>()
 {
+    val inflater = LayoutInflater.from(_context)
     class ImageViewHolder(_itemView : View) : RecyclerView.ViewHolder(_itemView){
-        var image: ImageView = _itemView.findViewById(R.id.displayImageView)
-        var title: TextView =  _itemView.findViewById(R.id.nameText)
+        var image: ImageView = _itemView.findViewById(R.id.image)
+        var title: TextView =  _itemView.findViewById(R.id.title)
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ImageAdapter.ImageViewHolder {
-        return ImageViewHolder(ImageView(parent.context))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ImageViewHolder {
+        var view = inflater.inflate(R.layout.recycler_layout,parent, false)
+        return ImageViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
