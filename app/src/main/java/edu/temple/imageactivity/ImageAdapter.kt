@@ -4,16 +4,28 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ImageAdapter (var _context: Context, var _imageObjects: Array<ImageObject>) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>()
+class ImageAdapter (var _context: Context, var _imageObjects: Array<ImageObject>,val clickListener: (ImageObject) -> Unit) : RecyclerView.Adapter<ImageAdapter.ImageViewHolder>()
 {
+
     val inflater = LayoutInflater.from(_context)
-    class ImageViewHolder(_itemView : View) : RecyclerView.ViewHolder(_itemView){
-        var image: ImageView = _itemView.findViewById(R.id.image)
-        var title: TextView =  _itemView.findViewById(R.id.title)
+
+    class ImageViewHolder(val _itemView : View) : RecyclerView.ViewHolder(_itemView){
+
+
+        fun bind(images: ImageObject, clickListener: (ImageObject) -> Unit) {
+            var title: TextView =  _itemView.findViewById(R.id.title)
+            var image: ImageView = _itemView.findViewById(R.id.image)
+
+            title.text = images.description
+            image.setImageResource(images.imageId)
+            itemView.setOnClickListener { clickListener(images)}
+
+        }
 
     }
 
@@ -22,15 +34,18 @@ class ImageAdapter (var _context: Context, var _imageObjects: Array<ImageObject>
         return ImageViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        var data = _imageObjects[position]
-        holder.title.text = data.description
-        holder.image.setImageResource(data.imageId)
+        holder.bind(_imageObjects[position], clickListener)
+
     }
 
     override fun getItemCount(): Int {
         return _imageObjects.size
     }
+
+
+
 
 
 }

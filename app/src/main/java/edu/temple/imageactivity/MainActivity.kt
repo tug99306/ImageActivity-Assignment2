@@ -2,17 +2,22 @@ package edu.temple.imageactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val imageAdapter: ImageAdapter
         val recycler = findViewById<RecyclerView>(R.id.recycler)
-
+        val nameTextView = findViewById<TextView>(R.id.nameText)
+        val displayImageView = findViewById<ImageView>(R.id.displayImageView)
 
         val imageArray = arrayOf(
             ImageObject("Eagle", R.drawable.eagle)
@@ -26,12 +31,15 @@ class MainActivity : AppCompatActivity() {
             , ImageObject("Strawberry Finch", R.drawable.strawberryfinch)
             , ImageObject("Turtle Dove", R.drawable.turtledove)
         )
+        fun imageItemClicked(images : ImageObject) {
+            nameTextView.text = images.description
+            displayImageView.setImageResource(images.imageId)
+        }
 
         recycler.layoutManager = GridLayoutManager(this,2)
-        imageAdapter = ImageAdapter(this, imageArray)
+        imageAdapter = ImageAdapter(this, imageArray){ imagesItem : ImageObject ->
+            imageItemClicked(imagesItem)}
         recycler.adapter = imageAdapter
-
-
 
 
 
