@@ -7,6 +7,7 @@ import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,8 +18,7 @@ class MainActivity : AppCompatActivity() {
         val descriptionText = findViewById<TextView>(R.id.nameText)
         val displayImage = findViewById<ImageView>(R.id.displayImageView)
 
-        _recycler.adapter
-
+        _recycler.setLayoutManager(new GridLayoutManager(this, 2))
 
 
     }

@@ -20,8 +20,8 @@ class ImageAdapter (val _content: Context, _imageObjects: Array<ImageObject>) : 
         return imageViewHolder(ImageView(parent.context))
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+        viewHolder.itemView.setText()
     }
 
     override fun getItemCount(): Int {
