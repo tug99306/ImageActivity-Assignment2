@@ -9,23 +9,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.GridLayoutManager
 
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var imageAdapter: ImageAdapter
 
-        val _recycler = findViewById<RecyclerView>(R.id.recycler)
-        val descriptionText = findViewById<TextView>(R.id.nameText)
-        val displayImage = findViewById<ImageView>(R.id.displayImageView)
-
-        _recycler.setLayoutManager(new GridLayoutManager(this, 2))
+        val recycler = findViewById<RecyclerView>(R.id.recycler)
 
 
-    }
-
-    fun getTestData() : Array<ImageObject> {
-        val imageObject = arrayOf(
-              ImageObject("Eagle", R.drawable.eagle)
+        var imageArray = arrayOf(
+            ImageObject("Eagle", R.drawable.eagle)
             , ImageObject("Hawk", R.drawable.hawk)
             , ImageObject("Lovebird", R.drawable.lovebird)
             , ImageObject("Stella the Owl", R.drawable.owlstellatu)
@@ -34,9 +29,19 @@ class MainActivity : AppCompatActivity() {
             , ImageObject("Penguin", R.drawable.penguin)
             , ImageObject("Puffin", R.drawable.puffin)
             , ImageObject("Strawberry Finch", R.drawable.strawberryfinch)
-            , ImageObject("Turtle Dove", R.drawable.turtledove));
+            , ImageObject("Turtle Dove", R.drawable.turtledove)
+        )
 
-        return imageObject
-    }
+        recycler.layoutManager = GridLayoutManager(this,2)
+        imageAdapter = ImageAdapter(this, imageArray)
+        recycler.adapter = imageAdapter
+
+
+
+
+
+
+
+}
 
 }
